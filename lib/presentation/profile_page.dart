@@ -1,10 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
-import 'package:group_chat/actions/actions.dart';
 import 'package:group_chat/models/models.dart';
 import 'package:group_chat/presentation/containers/user_container.dart';
-import 'package:group_chat/presentation/profile_photos/profile_photos.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -91,62 +88,6 @@ class ProfilePage extends StatelessWidget {
                         ),
                       )
                     ],
-                  ),
-                  const SizedBox(
-                    height: 60,
-                  ),
-                  DecoratedBox(
-                    //height: 300,
-                    decoration:
-                        BoxDecoration(color: Colors.white.withOpacity(0.3), borderRadius: BorderRadius.circular(10)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(22),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          const Text(
-                            'Pick your avatar! 📸',
-                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.pinkAccent),
-                          ),
-                          const SizedBox(
-                            height: 22,
-                          ),
-                          Column(
-                            children: <Widget>[
-                              GridView.builder(
-                                itemCount: 6,
-                                shrinkWrap: true,
-                                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 3,
-                                  crossAxisSpacing: 10,
-                                  mainAxisSpacing: 10,
-                                ),
-                                itemBuilder: (BuildContext context, int index) {
-                                  return GestureDetector(
-                                    onDoubleTap: () async {
-                                      await StoreProvider.of<AppState>(context).dispatch(
-                                        ChangeProfilePicture(
-                                            picture: profilePhotos.elementAt(index), response: (dynamic action) {},),
-                                      );
-                                    },
-                                    child: DecoratedBox(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(60),
-                                        image: DecorationImage(
-                                          image: NetworkImage(profilePhotos.elementAt(index)),
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                      // child: Image.network(profilePhotos.elementAt(index), fit: BoxFit.cover,)
-                                    ),
-                                  );
-                                },
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
                   ),
                 ],
               ),

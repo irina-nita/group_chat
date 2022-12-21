@@ -6,7 +6,7 @@ class AppUser with _$AppUser {
     required String uid,
     required String email,
     required String displayName,
-    @Default('https://i.postimg.cc/wMn6pgqD/Blowing-rocket-3d-cartoon-style-icon.jpg') String imageUrl,
+    @Default('https://i.postimg.cc/J099KWWn/3d-rendering-zoom-call-avatar-1.jpg') String imageUrl,
   }) = AppUser$;
 
   factory AppUser.fromJson(Map<dynamic, dynamic> json) => _$AppUserFromJson(Map<String, dynamic>.from(json));

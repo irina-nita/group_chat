@@ -14,7 +14,7 @@ class AuthEpics {
       TypedEpic<AppState, LoginStart>(_loginStart),
       TypedEpic<AppState, LogoutStart>(_logoutStart),
       TypedEpic<AppState, CreateUserStart>(_createUserStart),
-      TypedEpic<AppState, ChangeProfilePictureStart>(_changeProfilePictureStart),
+      TypedEpic<AppState, InitializeUserStart>(_initializeUserStart),
     ]);
   }
 
@@ -47,13 +47,12 @@ class AuthEpics {
     });
   }
 
-  Stream<dynamic> _changeProfilePictureStart(Stream<ChangeProfilePictureStart> actions, EpicStore<AppState> store) {
-    return actions.flatMap((ChangeProfilePictureStart action) {
+  Stream<dynamic> _initializeUserStart(Stream<InitializeUserStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((InitializeUserStart action) {
       return Stream<void>.value(null)
-          .asyncMap((_) => _api.changeProfilePicture(picture: action.picture))
-          .map((AppUser user) => ChangeProfilePicture.successful(user))
-          .onErrorReturnWith((Object error, StackTrace stackTrace) => ChangeProfilePicture.error(error, stackTrace))
-          .doOnData(action.response);
+          .asyncMap((_) => _api.getUser())
+          .map((AppUser? user) => InitializeUser.successful(user))
+          .onErrorReturnWith((Object error, StackTrace stackTrace) => InitializeUser.error(error, stackTrace));
     });
   }
 }

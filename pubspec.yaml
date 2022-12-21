@@ -12,6 +12,7 @@ dependencies:
   analyzer: ^4.6.0
   animated_text_kit: ^4.2.1
   cupertino_icons: ^1.0.2
+  cloud_firestore: ^4.2.0
   email_validator: ^2.1.17
   file_picker: any
   firebase_auth: ^4.2.0
