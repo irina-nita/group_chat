@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:group_chat/models/models.dart';
 import 'package:location/location.dart';
 
-class LocationApi{
+class LocationApi {
   LocationApi({required this.firestore, required this.location});
 
   final Location location;
@@ -10,7 +10,7 @@ class LocationApi{
 
   Future<UserLocation?> getLocation(String uid) async {
     PermissionStatus permissionStatus = await location.hasPermission();
-    if(permissionStatus == PermissionStatus.denied || permissionStatus == PermissionStatus.deniedForever) {
+    if (permissionStatus == PermissionStatus.denied || permissionStatus == PermissionStatus.deniedForever) {
       permissionStatus = await location.requestPermission();
 
       if (permissionStatus == PermissionStatus.denied || permissionStatus == PermissionStatus.deniedForever) {
@@ -20,21 +20,18 @@ class LocationApi{
 
     final LocationData result = await location.getLocation();
 
-    final UserLocation userLocation =  UserLocation(lat: result.latitude ?? 0.0, lng: result.longitude ?? 0.0, uid: uid);
+    final UserLocation userLocation = UserLocation(lat: result.latitude ?? 0.0, lng: result.longitude ?? 0.0, uid: uid);
 
     await firestore.collection('locations').doc(uid).set(userLocation.toJson());
 
     return userLocation;
   }
-  
+
   Stream<List<UserLocation>> listenLocations() {
-    return firestore
-        .collection('locations')
-        .snapshots()
-        .map((QuerySnapshot<Map<String, dynamic>> snapshot) {
-          return snapshot.docs
-              .map((QueryDocumentSnapshot<Map<String, dynamic>> doc) => UserLocation.fromJson(doc.data()))
-              .toList();
+    return firestore.collection('locations').snapshots().map((QuerySnapshot<Map<String, dynamic>> snapshot) {
+      return snapshot.docs
+          .map((QueryDocumentSnapshot<Map<String, dynamic>> doc) => UserLocation.fromJson(doc.data()))
+          .toList();
     });
   }
 }

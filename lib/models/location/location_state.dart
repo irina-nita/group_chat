@@ -4,8 +4,9 @@ part of models;
 class LocationState with _$LocationState {
   const factory LocationState({
     UserLocation? location,
-    @Default(<UserLocation>[])List<UserLocation> locations,
-}) = LocationState$;
+    @Default(<UserLocation>[]) List<UserLocation> locations,
+  }) = LocationState$;
 
-  factory LocationState.fromJson(Map<dynamic, dynamic> json) => _$LocationStateFromJson(Map<String, dynamic>.from(json));
+  factory LocationState.fromJson(Map<dynamic, dynamic> json) =>
+      _$LocationStateFromJson(Map<String, dynamic>.from(json));
 }

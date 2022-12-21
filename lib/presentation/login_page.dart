@@ -5,12 +5,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:group_chat/actions/actions.dart';
+import 'package:group_chat/actions/app_actions.dart';
 import 'package:group_chat/models/models.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
-
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -170,17 +169,19 @@ class _LoginPageState extends State<LoginPage> {
                                     child: Row(
                                       children: const <Widget>[
                                         Expanded(
-                                            child: Divider(
-                                          color: Colors.grey,
-                                        ),),
+                                          child: Divider(
+                                            color: Colors.grey,
+                                          ),
+                                        ),
                                         Text(
                                           " Don't have an account? ",
                                           style: TextStyle(color: Colors.grey, fontSize: 12),
                                         ),
                                         Expanded(
-                                            child: Divider(
-                                          color: Colors.grey,
-                                        ),),
+                                          child: Divider(
+                                            color: Colors.grey,
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ),

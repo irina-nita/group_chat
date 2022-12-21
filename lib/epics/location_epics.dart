@@ -1,4 +1,4 @@
-import 'package:group_chat/actions/actions.dart';
+import 'package:group_chat/actions/app_actions.dart';
 import 'package:group_chat/data/location_api.dart';
 import 'package:group_chat/models/models.dart';
 import 'package:redux_epics/redux_epics.dart';
@@ -16,7 +16,6 @@ class LocationEpics {
     ]);
   }
 
-
   Stream<dynamic> _getLocationStart(Stream<GetLocationStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((GetLocationStart action) {
       return Stream<void>.value(null) //
@@ -25,16 +24,16 @@ class LocationEpics {
           .onErrorReturnWith((Object error, StackTrace stackTrace) => GetLocation.error(error, stackTrace));
     });
   }
-    //
-    // Stream<dynamic> _listenForLocationsStart(Stream<dynamic> actions, EpicStore<AppState> store){
-    //   return actions
-    //       .where<ListenForLocationsStart>()
-    //       .flatMap((ListenForLocationsStart action) {
-    //     return Stream<void>.value(null) //
-    //         .flatMap((_) => _api.listenLocations())
-    //         .map((List<UserLocation> locations) => ListenForLocations.event(locations))
-    //       .takeUntil(actions.where<ListenForLocationsDone>())
-    //         .onErrorReturnWith((Object error, StackTrace stackTrace) => ListenForLocations.error(error, stackTrace));
-    //   });
-    // }
-  }
+  //
+  // Stream<dynamic> _listenForLocationsStart(Stream<dynamic> actions, EpicStore<AppState> store){
+  //   return actions
+  //       .where<ListenForLocationsStart>()
+  //       .flatMap((ListenForLocationsStart action) {
+  //     return Stream<void>.value(null) //
+  //         .flatMap((_) => _api.listenLocations())
+  //         .map((List<UserLocation> locations) => ListenForLocations.event(locations))
+  //       .takeUntil(actions.where<ListenForLocationsDone>())
+  //         .onErrorReturnWith((Object error, StackTrace stackTrace) => ListenForLocations.error(error, stackTrace));
+  //   });
+  // }
+}

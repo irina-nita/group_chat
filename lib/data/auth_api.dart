@@ -25,10 +25,11 @@ class AuthApi {
     await auth.signOut();
   }
 
-  Future<AppUser> createUser(
-      {required String email,
-      required String password,
-      String imageUrl = 'https://i.postimg.cc/J099KWWn/3d-rendering-zoom-call-avatar-1.jpg'}) async {
+  Future<AppUser> createUser({
+    required String email,
+    required String password,
+    String imageUrl = 'https://i.postimg.cc/J099KWWn/3d-rendering-zoom-call-avatar-1.jpg',
+  }) async {
     final UserCredential credentials = await auth.createUserWithEmailAndPassword(email: email, password: password);
     final User user = credentials.user!;
     final String displayName = email.split('@').first;

@@ -5,13 +5,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:group_chat/actions/actions.dart';
+import 'package:group_chat/actions/app_actions.dart';
 import 'package:group_chat/data/auth_api.dart';
 import 'package:group_chat/data/location_api.dart';
 import 'package:group_chat/epics/epics.dart';
 import 'package:group_chat/firebase_options.dart';
 import 'package:group_chat/models/models.dart';
-import 'package:group_chat/presentation/location_page.dart';
 import 'package:group_chat/presentation/home.dart';
 import 'package:group_chat/reducer/reducer.dart';
 import 'package:location/location.dart';
@@ -25,9 +24,9 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   final AuthApi authApi = AuthApi(auth: FirebaseAuth.instance);
-  
+
   final LocationApi locationApi = LocationApi(location: Location(), firestore: FirebaseFirestore.instance);
-  
+
   final AppEpics epics = AppEpics(authApi: authApi, locationApi: locationApi);
 
   final StreamController<dynamic> controller = StreamController<dynamic>();
